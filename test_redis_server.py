@@ -2,7 +2,7 @@ import redis
 import json
 
 class RedisDataStoreClient:
-    def __init__(self, host='localhost', port=8999, password=None):
+    def __init__(self, host='localhost', port=16379, password=None):
         self.client = redis.StrictRedis(host=host, port=port, password=password, decode_responses=True)
 
     def start_transaction(self):
