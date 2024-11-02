@@ -28,32 +28,32 @@ Data Modification Commands
 Data Modification Commands can be issued individually or as a part of a transaction.
 
 
-# add or update a key/value pair – overwrites existing value
+#### add or update a key/value pair – overwrites existing value
 
 PUT [key] [value]
 
 
-# retrieve a value by key – retrieves latest value from all committed transactions
+#### retrieve a value by key – retrieves latest value from all committed transactions
 
 GET [key]
 
 
-# delete a value by key
+#### delete a value by key
 
 DEL [key]
 
 
 Transaction Control Commands
-# start a transaction
+#### start a transaction
 
 START
 
 
-# commit a transaction
+#### commit a transaction
 
 COMMIT
 
 
-# rollback a transaction – discard changes
+#### rollback a transaction – discard changes
 
 ROLLBACK
