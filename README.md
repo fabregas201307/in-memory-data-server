@@ -1,11 +1,11 @@
-## docker build & run redis server locally
+## Docker build & run redis server locally
 
 ```
 docker build . -t my-redis-server --no-cache
 docker run -it --name redis-server -p 6379:6379 my-redis-server 
 ```
 
-## Run local
+## Use the server from local
 
 ### Install dependencies
 
