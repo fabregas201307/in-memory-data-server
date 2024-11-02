@@ -1,5 +1,7 @@
 import redis
 import json
+import threading
+
 
 class RedisDataStoreClient:
     def __init__(self, host='localhost', port=6379, password=None):
@@ -50,7 +52,14 @@ class RedisDataStoreClient:
             self.client.delete(key)
         print({"status": "Ok", "mesg": f"Key '{key}' deleted"})
 
-# Test the RedisDataStoreClient with an example transaction
+def client_task(name, key, value):
+    client = redis.StrictRedis(host='localhost', port=6379, decode_responses=True)
+    client.set(key, value)
+    print(f"{name} set {key} to {value}")
+    result = client.get(key)
+    print(f"{name} got {key}: {result}")
+    
+    
 if __name__ == "__main__":
     store = RedisDataStoreClient()
 
@@ -87,3 +96,14 @@ if __name__ == "__main__":
     # Clean up by deleting keys
     store.delete("favorite_color")
     store.delete("name")
+
+
+    # Simulate multiple clients
+    threads = []
+    for i in range(5):
+        t = threading.Thread(target=client_task, args=(f"Client-{i+1}", f"key-{i+1}", f"value-{i+1}"))
+        threads.append(t)
+        t.start()
+
+    for t in threads:
+        t.join()
