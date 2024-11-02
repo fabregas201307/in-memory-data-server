@@ -16,7 +16,7 @@ conda install pip
 pip install -r requirements.txt
 ```
 
-### test with server
+### test with server, through python code as in test_redis_server.py
 
 ```
 conda activate redis
@@ -24,36 +24,27 @@ python test_redis_server.py
 ```
 
 
-Data Modification Commands
-Data Modification Commands can be issued individually or as a part of a transaction.
-
-
 #### add or update a key/value pair – overwrites existing value
 
-PUT [key] [value]
-
+    store.put("name", "Alice")
 
 #### retrieve a value by key – retrieves latest value from all committed transactions
 
-GET [key]
-
+    store.get("name")
 
 #### delete a value by key
 
-DEL [key]
+    store.delete("favorite_color")
 
-
-Transaction Control Commands
 #### start a transaction
 
-START
-
+    store.start_transaction()
 
 #### commit a transaction
 
-COMMIT
+    store.commit_transaction()
 
 
 #### rollback a transaction – discard changes
 
-ROLLBACK
+    store.rollback_transaction()
