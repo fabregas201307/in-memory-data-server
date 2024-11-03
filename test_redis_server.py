@@ -4,7 +4,7 @@ import threading
 
 
 class RedisDataStoreClient:
-    def __init__(self, host='localhost', port=6379, password=None):
+    def __init__(self, host='localhost', port=8001, password=None):
         self.client = redis.StrictRedis(host=host, port=port, password=password, decode_responses=True)
 
     def start_transaction(self):
@@ -53,7 +53,7 @@ class RedisDataStoreClient:
         print({"status": "Ok", "mesg": f"Key '{key}' deleted"})
 
 def client_task(name, key, value):
-    client = redis.StrictRedis(host='localhost', port=6379, decode_responses=True)
+    client = redis.StrictRedis(host='localhost', port=8001, decode_responses=True)
     client.set(key, value)
     print(f"{name} set {key} to {value}")
     result = client.get(key)
